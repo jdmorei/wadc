@@ -1,0 +1,72 @@
+<% if logged_in? %>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1><%= t('macros_availables') %></h1>
+                  <% if (@macrosAvailables == nil) then %>
+                      <p><%= t('no_functions') %> </p>
+                  <% else %>
+                      <p><%= t('number_functions1') %>  <%= @macrosAvailables.length %> <%= t('number_functions2') %> <%= @dispositivo.nombre %> </p>
+                      </div>
+                      <div class="panel-body">
+                        <div class="table-responsive">
+                          <table  id="dtabla"  class="table table-striped">
+                            <thead>
+                            <tr>
+                              <th><%= t('name') %></th>
+                              <th><%= t('serie') %></th>
+                              <th><%= t('model') %></th>
+                              <th><%= t('inputs') %></th>
+                              <th><%= t('outputs') %></th>
+                              <th></th>
+                              <th colspan="3"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <% @macrosAvailables.each do |key, macro| %>
+                                <tr>
+                                  <td><%= macro.nombre %></td>
+                                  <td><%= macro.serie %></td>
+                                  <td><%= macro.modelo %></td>
+                                  <td><%= macro.inputs.length %></td>
+                                  <td><%= macro.commands.length %></td>
+
+                                  <td class="dropdown">
+
+                                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                      <%= t('actions') %>
+                                      <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                      <li><%= link_to t('execute'), goMacro_path(:m => key, :d => @dispositivo.id, :id => @dispositivo.id), method: :get %></li>
+
+                                    </ul>
+
+                                  </td>
+                                </tr>
+
+                            <% end %>
+                            </tbody>
+                          </table>
+
+                          <br>
+
+
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+
+                      </div>
+
+                      <!--  End  Striped -->
+                  <% end %>
+
+
+
+<% end %>

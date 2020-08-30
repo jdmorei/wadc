@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo: MyString
+  fabricante: MyString
+  serie: MyString
+  modelo: MyString
+  nombre: MyString
+  fecha: 2016-05-28
+  descripcion: MyText
+  ip: MyString
+  passenable: MyString
+  passtelnet: MyString
+  passsh: MyString
+  usuario_id: 
+
+two:
+  tipo: MyString
+  fabricante: MyString
+  serie: MyString
+  modelo: MyString
+  nombre: MyString
+  fecha: 2016-05-28
+  descripcion: MyText
+  ip: MyString
+  passenable: MyString
+  passtelnet: MyString
+  passsh: MyString
+  usuario_id: 

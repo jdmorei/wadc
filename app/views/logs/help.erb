@@ -1,0 +1,40 @@
+<% if logged_in? %>
+
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+
+          <!--    Striped Rows Table  -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1>MACRO</h1>
+            </div>
+            <div class="panel-body">
+
+              <p><b>sleep( <%= t('number') %> ):</b> <%= t('text_sleep') %>
+              </p>
+              <p><b>CR():</b>  <%= t('text_cr') %>
+              </p>
+              <p><b>+random( <%= t('number') %> ):</b>  <%= t('text_random') %>
+              </p>
+              <p><b>break():</b> <%= t('text_break') %>
+              </p>
+              <p><b>passwordenable():</b>  <%= t('text_enable') %></p>
+              <p><b>passwordtelnet():</b>  <%= t('text_telnet') %></p>
+              <p><b> passwordssh():</b> <%= t('text_ssh') %></p>
+              <br>
+
+            </div>
+          </div>
+      </div>
+
+    </div>
+    </div>
+    </div>
+
+    <hr/>
+    </div>
+    <!--  End  Striped -->
+
+
+<% end %>

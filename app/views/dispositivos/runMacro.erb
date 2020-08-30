@@ -1,0 +1,49 @@
+<% if logged_in? %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2><%= t('device') %> <%= @device.nombre %></h2>
+        <h5> <%= t('sending_commands') %> <%= @via %> </h5>
+      </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr/>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1> <%= @device.nombre %></h1>
+                </div>
+                <div class="panel-body">
+
+
+                  <% @sentenciasFinales.each do |sf| %>
+
+                      <h5><%= sf %></h5>
+                      <!--  End  Striped -->
+                  <% end %>
+
+                  <br/>
+
+                <h4 style="color:red;">  <%= @sol.gsub! '\n', "  |  "  %> </h4>
+
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+    <!--  End  Striped -->
+<% end %>

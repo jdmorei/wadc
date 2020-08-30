@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 
+  name: 
+  size: 1
+
+two:
+  date: 
+  name: 
+  size: 1

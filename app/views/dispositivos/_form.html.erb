@@ -1,0 +1,63 @@
+<%= form_for(@dispositivo) do |f| %>
+  <% if @dispositivo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dispositivo.errors.count, "error") %> <%= t('error_save_device') %>></h2>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label t('name') %><br>
+    <%= f.text_field :nombre, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('type') %><br>
+    <%= f.text_field :tipo, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('manufacturer') %><br>
+    <%= f.text_field :fabricante, class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label t('serie') %><br>
+    <%= f.text_field :serie, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('model') %><br>
+    <%= f.text_field :modelo,class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('date') %><br>
+    <%= f.text_field :fecha, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('description') %><br>
+    <%= f.text_area :descripcion, class: "form-control", rows: "3" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('ip') %><br>
+    <%= f.text_field :ip, class: "form-control"  %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('super_user_pass') %><br>
+    <%= f.text_field :passenable, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('telnet_user_pass') %><br>
+    <%= f.text_field :passtelnet, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('telnet_port') %><br>
+    <%= f.text_field :telnetport, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('ssh_user_pass') %><br>
+    <%= f.text_field :passsh, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('ssh_port') %><br>
+    <%= f.text_field :sshport, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit t('save'), class: "btn btn-danger btn-lg" %>
+  </div>
+<% end %>

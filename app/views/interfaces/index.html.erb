@@ -1,0 +1,145 @@
+<% if logged_in? %>
+
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+          <!--    Striped Rows Table  -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1><%= t('interface_list')%></h1>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+
+                <table  id="dtablaCustoma"  class="table table-striped">
+
+                  <thead>
+                    <tr>
+                      <th><%= t('name')%></th>
+                      <th><%= t('address')%></th>
+                      <th><%= t('mask')%></th>
+                      <th><%= t('configuration')%></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                      <% Socket.getifaddrs.reject { |ifaddr| !ifaddr.addr.ip? || !ifaddr.addr.ipv4? || (ifaddr.flags & Socket::IFF_MULTICAST == 0) }.each do |inte| %>
+
+
+                          <% interf= [inte.name, inte.addr.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0], inte.netmask.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0]] %>
+                      <%= form_for interfaces_configure_path, :url => {:action => "configure"} do |f| %>
+
+                      <tr>
+                        <% if interf[0].to_s.upcase =~  /^VMNET*/ %>
+                        <% else  %>
+                        <td><%= interf[0].to_s.upcase %></td>
+                        <td><%=  interf[1]%></td>
+                        <td><%= interf[2] %></td>
+                        <td><%= select(interfaces_configure_path ,:name, Interface.all.collect { |p| [p.name] }) %></td>
+                        <td><%= f.hidden_field :interfaz, :value => "#{inte.name}" %></td>
+                        <td> <%= f.submit "Configure" %></td>
+                        <%end %>
+
+                      <% end %>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+          <!--    Striped Rows Table  -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1><%= t('configuration_list')%></h1>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+
+                <table  id="dtabla"  class="table table-striped">
+
+                  <thead>
+                  <tr>
+                    <th><%= t('name')%></th>
+                    <th><%= t('address')%></th>
+                    <th><%= t('mask')%></th>
+                    <th><%= t('gateway')%></th>
+                    <th><%= t('dns')%></th>
+                    <th></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @interfaces.each do |interface| %>
+                      <tr>
+                        <td><%= interface.name %></td>
+                        <td><%= interface.address %></td>
+                        <td><%= interface.mask %></td>
+                        <td><%= interface.gateway %></td>
+                        <td><%= interface.dns %></td>
+                        <td class="dropdown">
+
+                          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <%= t('actions')%>
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><%= link_to t('show'), interface %></li>
+                            <li><%= link_to t('edit'), edit_interface_path(interface) %></li>
+                            <li><%= link_to t('delete'), interface, method: :delete, data: {confirm: t('are_sure_delete')} %></li>
+
+                          </ul>
+
+                        </td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+    <hr/>
+    </div>
+    <!--  End  Striped -->
+
+  <script>
+
+    $(document).ready(function(){
+
+        if (!$.fn.dataTable.isDataTable('#dtabla')) {
+
+            $("#dtablaCustom").DataTable({
+                "info": false
+            })
+        }
+    });
+
+  </script>
+
+<% end %>

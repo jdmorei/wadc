@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>WADC</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet"/>
+
+
+    <link href="/assets/css/quickMacro.css" rel="stylesheet"/>
+
+
+    <script src="/assets/js/jquery-1.10.2.js"></script>
+
+    <script src="/assets/js/sweetalert2.all.min.js"></script>
+
+
+    <script src="/assets/js/macros_quick.js" />
+
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
+
+
+  </head>
+
+  <body class="second_screen">
+    <% if logged_in? %>
+
+      <input class="hidden" id="msg_ok" value="<%= t('msg_ok')%>" />
+      <input class="hidden" id="msg_cancel" value="<%= t('msg_cancel')%>" />
+      <input class="hidden" id="msg_placeHolder" value="<%= t('msg_placeHolder')%>" />
+      <input class="hidden" id="msg_error" value="<%= t('msg_error')%>" />
+
+    <div class="row presetMacro">
+        <span><%= t('preset_macro')%></span>
+      </div>
+      <hr/>
+
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="panel-body">
+
+              <div class="container_flex">
+
+                <% value = 0%>
+                <% cont =0 %>
+                <% $macros_global.each do |key, macro| %>
+                  <% if  macro.icono!=nil %>
+                    <% print macro %>
+                    <% cont = cont +1 %>
+
+                    <% if  (cont>= value) and (cont <=(value + 4)) %>
+
+                      <div class="rectangulo" id="<%= 'rect'+cont.to_s%>">
+
+                    <% else %>
+                      <div class="rectangulo rectDisabled" id="<%= 'rect'+cont.to_s%>">
+
+                    <% end %>
+                    <div class="row icono_quick">
+                      <i class="fa <%= macro.icono %>"></i>
+                    </div>
+                    <div class="row name_quick">
+                      <span  class="span-font" data-name="nombre"><%= macro.nombre%></span>
+                    </div>
+                    <div class="row name_quick">
+                      <span class="span-font" data-fabricante="fabricante"><%= macro.fabricante %></span>
+                    </div>
+
+                    <div class="row name_quick">
+                      <span class="hidden" id="devices"><%= (@devices.select { |hash| (hash[:fabricante]).downcase == macro.fabricante.downcase }).to_json %></span>
+                    </div>
+
+
+                    <br>
+                    </div>
+
+
+
+                    <% end %>
+                  <% end %>
+                  </div>
+
+
+
+                </div>
+
+                <a class="signed" href="javascript:lessQuickFunctions()" style="float:left;"  class="actionLink aIsDisabled" id="moveBack"><</a>
+                <a class="signed" href="javascript:moreQuickFunctions()" style="float:right;" class="actionLink" id="moveNext">></a>
+                <br>
+
+                <hr>
+              </div>
+
+              <style>
+
+              </style>
+              <!--  End  Striped -->
+        <% end %>
+
+
+      </div>
+    </div>
+
+  </body>
+</html>
+
+
+
+
+

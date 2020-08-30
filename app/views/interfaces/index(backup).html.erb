@@ -1,0 +1,180 @@
+<% if logged_in? %>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>INTERFACES</h2>
+        <h5>Change your network configuration </h5>
+      </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr/>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+        <div class="col-md-12">
+          <div class="alert alert-info ">
+            <h2 style="text-align: center">Now</h2>
+
+            <div class="text-center">
+              <%= form_for interfaces_configure_path, :url => {:action => "configure"} do |f| %>
+
+                  <%# Socket.getifaddrs.reject { |ifaddr| !ifaddr.addr.ip? || !ifaddr.addr.ipv4? || (ifaddr.flags & Socket::IFF_MULTICAST == 0) }.map { |ifaddr| %>
+
+
+                  <p>
+                    <%# [ifaddr.name, ifaddr.addr.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0], ifaddr.netmask.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0]] } %>
+                    <%# select(interfaces_configure_path, :name, Interface.all.collect { |p| [p.name] }) %>
+
+                    <% Socket.getifaddrs.reject { |ifaddr| !ifaddr.addr.ip? || !ifaddr.addr.ipv4? || (ifaddr.flags & Socket::IFF_MULTICAST == 0) }.each do |inte| %>
+
+                        <br/><br/>
+                        <% interf= [inte.name, inte.addr.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0], inte.netmask.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0]] %>
+                        <span><%= interf[0].to_s.upcase %>&nbsp;|&nbsp;<%= interf[1] %>&nbsp;|&nbsp;<%= interf[2] %></span>
+                        <%= f.hidden_field :interfaz, :value => "#{inte.name}" %>
+                        <%= select(interfaces_configure_path, :name, Interface.all.collect { |p| [p.name] }) %>
+                        <%= f.submit "Configure" %>
+
+                    <% end %>
+                    </div>
+              <% end %>
+              </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+          <!--    Striped Rows Table  -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1>Interfaces</h1>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+
+                <table class="table table-striped">
+
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mask</th>
+                    <th>Interface</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+
+                  <%= form_for interfaces_configure_path, :url => {:action => "configure"} do |f| %>
+                      <% Socket.getifaddrs.reject { |ifaddr| !ifaddr.addr.ip? || !ifaddr.addr.ipv4? || (ifaddr.flags & Socket::IFF_MULTICAST == 0) }.each do |inte| %>
+
+                          <br/><br/>
+                          <% interf= [inte.name, inte.addr.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0], inte.netmask.inspect.scan(/((?:\d{1,3}.){3}(\d{1,3}))/)[0][0]] %>
+                          <span><%= interf[0].to_s.upcase %>&nbsp;|&nbsp;<%= interf[1] %>&nbsp;|&nbsp;<%= interf[2] %></span>
+                          <%= f.hidden_field :interfaz, :value => "#{inte.name}" %>
+
+                      <tr>
+                        <td><%= interf[0].to_s.upcase %></td>
+                        <td><%=  interf[1]%></td>
+                        <td><%= interf[2] %></td>
+                        <td><%= select(interfaces_configure_path, :name, Interface.all.collect { |p| [p.name] }) %></td>
+                        <td> <%= f.submit "Configure" %></td>
+
+                        <td class="dropdown">
+
+                          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Actions
+                            <span class="caret"></span>
+                          </button>
+
+                        </td>
+
+
+
+                      <% end %>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+          <!--    Striped Rows Table  -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1>Configurations</h1>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+
+                <table class="table table-striped">
+
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mask</th>
+                    <th>Gateway</th>
+                    <th>Dns</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @interfaces.each do |interface| %>
+                      <tr>
+                        <td><%= interface.name %></td>
+                        <td><%= interface.address %></td>
+                        <td><%= interface.mask %></td>
+                        <td><%= interface.gateway %></td>
+                        <td><%= interface.dns %></td>
+                        <td class="dropdown">
+
+                          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Actions
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><%= link_to 'Show', interface %></li>
+                            <li><%= link_to 'Edit', edit_interface_path(interface) %></li>
+                            <li><%= link_to 'Delete', interface, method: :delete, data: {confirm: 'Are you sure to delete?'} %></li>
+
+                          </ul>
+
+                        </td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+
+    <hr/>
+    </div>
+    <!--  End  Striped -->
+
+
+<% end %>

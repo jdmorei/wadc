@@ -1,0 +1,39 @@
+<% if logged_in? %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1><%= t('file_show') %><%= @logName %></h1>
+  </div>
+  <div class="panel-body">
+
+
+    <div class="panel-body">
+      <div class="table-responsive">
+      <table  id="dtabla"  class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>User</th>
+            <th>text</th>
+          </tr>
+        </thead>
+      <%  @body.each do |line| %>
+          <% date,user,text=line.split(';') if line!=nil%>
+          <tr>
+            <td><%= date %></td>
+            <td><%= user %></td>
+            <td><%= text %></td>
+
+          </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+
+
+
+  </div>
+</div>
+
+
+<% end %>

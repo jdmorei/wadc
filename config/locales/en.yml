@@ -1,0 +1,180 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  # misc
+  actions: 'Actions'
+  show: 'Show'
+  edit: 'Edit'
+  delete: 'Delete'
+  ssh: 'SSH'
+  telnet: 'Telnet'
+  date: 'Date'
+  description: 'Description'
+  save: 'Save'
+  back: 'Back'
+  inputs: 'Parameters'
+  outputs: 'output commands'
+  execute: 'Execute'
+  commands: 'Command'
+  run: 'Run'
+  via: 'Via'
+  download: 'Download'
+  configure: 'Configure'
+  are_sure_delete: 'Are you sure to delete?'
+  version: 'Version'
+  icon: 'Icon'
+  clone: 'Clone'
+  export: 'Export'
+  select_file: 'Select Macro file'
+  configuration: 'Configuration'
+
+  #nav
+  devices: 'Devices'
+  show_list: '<i>Show list</i>'
+  create_new: '<i>Create new</i>'
+  macros: 'MACROS'
+  import: '<i>Import</i>'
+  new_shortcut: '<i>New Quick MACRO</i>'
+  new_macro: '<i>New Standard MACRO</i>'
+  system: 'System'
+  logs: '<i>Logs</i>'
+  console_port: '<i>Console port</i>'
+  net_int: '<i>Network interfaces</i>'
+  shutdown: '<i>Shutdown</i>'
+  users: 'Users'
+  help: '<i class="fa fa-life-ring  fa-2x  "></i>Help'
+  logout: 'Logout'
+
+  # devices
+  device_list: 'Device list'
+  type: 'Type'
+  manufacturer: 'OS'
+  serie: 'Serie'
+  model: 'Model'
+  name: 'Name'
+  ip: 'IP'
+  run_macro: 'Run MACRO'
+  ssh: 'SSH'
+  telnet: 'Telnet'
+  console: 'Console'
+  super_user_pass: 'Superuser password'
+  telnet_user_pass: 'Telnet password'
+  ssh_user_pass: 'SSH password'
+  error_save_device: 'prohibited this device from being saved:'
+  edit_device: 'Edit Device'
+  details_device: 'Device details of '
+  macros_availables: 'MACROS availables'
+  no_functions: 'You must insert Macros before'
+  number_functions1: 'There are '
+  number_functions2: ' function for use in '
+  fill_field_macro: 'Fill the fields and click "run" to apply changes'
+  remember_commands: 'Do you need to remember commands? click here'
+  session_with: 'Session started with'
+  new_device: 'New Device'
+  device: 'Device'
+  sending_commands: 'Sending commands via'
+  score: 'Score'
+  downloads_number: 'Downloads'
+  by: 'By'
+  details: 'Details'
+
+  #help
+  number: 'Number'
+  text_sleep: 'in the procedures through the console,
+                                              it is not possible to know when some commands have been completely executed
+                                              to launch the next one. An example of this case can be in the recovery of the password
+                                              enable on a CISCO switch, when the "boot" command is issued in the recovery procedure is
+                                              it is necessary to wait a certain time for the device to boot up again.'
+  text_cr: 'cas in the previous case, in certain occasions the CLI of the
+                                         expects a user to interact with it by launching a line break to confirm any changes,
+                                         This function launches the character "\n" into the device.'
+  text_random: ' concatenates a random number, which will be given between the value 0 and the value entered by parameter.'
+  text_break: 'also used for specific recovery functions through the console, in this case, it will launch the "X02" character
+                 also known as the "break character" used for example in password recovery on CISCO routers.'
+  text_enable: 'replaced by the superuser password.'
+  text_telnet: 'replaced by the telnet password.'
+  text_ssh: 'replaced by the SSH password.'
+  ssh_port: 'SSH Port'
+  telnet_port: 'Telnet Port'
+
+
+ #logs
+  log_files: ' Log files'
+  file: 'File'
+  sizekb: 'Size(Kb)'
+  read: 'Read'
+  file: 'File: '
+  file_show: 'Showing fichero: '
+
+  #interfaces
+  error_save_config: ' prohibited this interface from being saved: '
+  address: 'Address'
+  mask: 'Mask'
+  gateway: 'Gateway'
+  dns: 'DNS'
+  edit_config: 'Editing Interface Configuration'
+  new_config: 'New Interface Configuration'
+  interface_list: 'Interface list'
+  interface: 'Interface'
+  configuration_list: 'Configurations'
+  details_config: 'Interface details of'
+
+  #macro
+  macro_list: 'Macros list'
+  macro_edit: 'Editing Macro'
+  os_version: 'OS version'
+  command_list: 'Command list'
+  parameters: 'Parameters'
+  macro_update: 'Update Macro'
+  macro_new: 'New Macro'
+  shortcut_new: 'New Shortcut Macro'
+  macro_import: 'Import Macro'
+  macro_repo_import: 'Import Macro from Repo'
+  import_button: 'Import'
+  preset_macro: 'PRESET MACROS'
+  macro_create: 'Create Macro'
+  write_macro_new: 'Please, write Macro name'
+  can_not_empty: 'Field can not be empty'
+  bad_characters: "Contains any of the following illegal characters: <  >  :  \"  |  ? * / . \\ "
+  name_not_free:  'The selected name is not allowed'
+
+  #users
+  error_save_user: 'prohibited this user from being saved: '
+  password: 'Password'
+  rol: 'Rol'
+  superuser: 'Superuser'
+  user_list: 'User list'
+  detail_of: 'Details of'
+  user_edit: 'Edit User'
+  user_new: 'New User'
+
+  #quickaccess
+  msg_ok: 'Go'
+  msg_cancel: 'Back'
+  msg_placeHolder: 'Select a device'
+  msg_error: 'you must select a device'
+  msg_generic_error_run: 'An error has ocurred'
+  msg_generic_sub_error_run: 'Oops...'
+  msg_success_run: 'It has been executed successfully'
+  msg_generic_sub_success_run: 'Congratulations'
+  msg_generic_footer: 'More info in system log TODO link'
+  quick_run: 'Shortcut'

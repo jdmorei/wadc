@@ -1,0 +1,77 @@
+<% if logged_in? %>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!--    Striped Rows Table  -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1><%=  t('device_list')  %></h1>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table id="dtabla" class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th><%= t('name') %></th>
+                    <th> <%= t('type') %></th>
+                    <th> <%= t('manufacturer') %></th>
+                    <th><%= t('serie') %></th>
+                    <th><%= t('model') %></th>
+                    <th><%= t('ip') %></th>
+                    <th></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @dispositivos.each do |dispositivo| %>
+                      <tr>
+                        <td><%= dispositivo.nombre %></td>
+                        <td><%= dispositivo.tipo %></td>
+                        <td><%= dispositivo.fabricante %></td>
+                        <td><%= dispositivo.serie %></td>
+                        <td><%= dispositivo.modelo %></td>
+                        <td><%= dispositivo.ip %></td>
+
+                        <td class="dropdown">
+
+                            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              <%= t('actions') %>
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                              <li><%= link_to t('show'), dispositivo %></li>
+                              <li><%= link_to t('edit'), edit_dispositivo_path(dispositivo) %></li>
+                              <li><%= link_to t('delete'), dispositivo, method: :delete, data: {confirm: 'Are you sure to delete?'} %></li>
+                              <li role="separator" class="divider"></li>
+                              <li><%= link_to t('run_macro'), macroAvailable_path(id: dispositivo.id) %></li>
+                              <li role="separator" class="divider"></li>
+                              <% if dispositivo.passsh != nil && dispositivo.passsh != "" then %>
+                                  <li><%= link_to t('ssh'), openSSH_path(id: dispositivo.id), target: "_blank"
+                                  %></li>
+                              <% end %>
+                              <% if dispositivo.passtelnet != nil && dispositivo.passtelnet != "" then %>
+                                  <li><%= link_to t('telnet'), telnet_terminal_path(id: dispositivo.id),  target: "_blank"
+                                  %></li>
+                              <% end %>
+                            </ul>
+
+
+
+                        </td>
+
+
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+
+                <br>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--  End  Striped -->
+<% end %>

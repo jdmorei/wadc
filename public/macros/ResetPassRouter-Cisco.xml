@@ -1,0 +1,21 @@
+<Macro>
+  <name>ResetPassRouter-Cisco</name>
+  <device>
+    <manufacturer>Cisco</manufacturer>
+    <serie>-</serie>
+    <model>-</model>
+  </device>
+  <inputs>
+  </inputs>
+  <commands>
+    <command>confreg 0x2142</command>
+    <command>reset</command>
+    <command>enable</command>
+    <command>copy startup-config running-config</command>
+    <command>configure terminal</command>
+    <command>enable secret DRACSC</command>
+    <command>config-register 0x2102</command>
+    <command>exit</command>
+    <command>copy running-config startup-config</command>
+  </commands>
+</Macro>

@@ -1,0 +1,36 @@
+<% if logged_in? %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2> <%= t('ssh') %> </h2>
+        <h5><%= t('session_with') %> <%= @d.nombre %> </h5>
+      </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr/>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+
+                <div class="panel-body" style="height: 1000px; width: 100%;" >
+                  <iframe style='height: 100%; width: 100%;' frameborder="0"    src="https://localhost:<%=@puerto %>">
+
+                  </iframe>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+    </div>
+    <!--  End  Striped -->
+<% end %>

@@ -1,0 +1,24 @@
+<Macro>
+  <name>ResetPassSwitch-Cisco</name>
+  <device>
+    <manufacturer>Cisco</manufacturer>
+    <serie>-</serie>
+    <model>-</model>
+  </device>
+  <inputs>
+  </inputs>
+  <commands>
+    <command>flash_init</command>
+    <command>dir flash:</command>
+    <command>rename flash:config.text flash:config.old</command>
+    <command>boot</command>
+    <command>no</command>
+    <command>enable</command>
+    <command>rename flash:config.old flash:config.text</command>
+    <command>copy flash:config.text system:running-config</command>
+    <command>configure terminal</command>
+    <command>enable secret DRACSC</command>
+    <command>exit</command>
+    <command>copy running-config startup-config</command>
+  </commands>
+</Macro>

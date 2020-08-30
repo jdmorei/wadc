@@ -1,0 +1,43 @@
+<% if logged_in? %>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1><%= t('detail_of')%> <%= @usuario.name %> </h1>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    <strong  class="form-control"><%= t('name')%>: <%= @usuario.name %></strong>
+                  </p>
+
+                  <p>
+                    <strong  class="form-control"><%= t('password')%>: <%= @usuario.password %> </strong>
+                  </p>
+
+                  <p>
+                    <strong  class="form-control"><%= t('rol')%>: <%= @usuario.rol %> </strong>
+                  </p>
+
+                  <p>
+                    <strong  class="form-control"><%= t('superuser')%>: <%= @usuario.superusuario %> </strong>
+
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= link_to t('back'), usuario_path, class: "btn btn-default btn-lg", style: "text-color: white" %>
+              <%= link_to t('edit'), edit_usuario_path(@usuario), class: "btn btn-danger btn-lg" %>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    <!--  End  Striped -->
+<% end %>

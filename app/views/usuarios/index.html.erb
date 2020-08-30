@@ -1,0 +1,59 @@
+<% if logged_in? %>
+
+
+  <div class="row">
+  <div class="col-md-12">
+    <!--    Striped Rows Table  -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1><%= t('user_list')%></h1>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table   id="dtabla" class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t('name')%></th>
+      <th><%= t('rol')%></th>
+      <th><%= t('superuser')%></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @usuarios.each do |usuario| %>
+      <tr>
+        <td><%= usuario.name %></td>
+        <td><%= usuario.rol %></td>
+        <td><%= usuario.superusuario %></td>
+
+
+        <td class="dropdown">
+
+          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <%= t('actions')%>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><%= link_to t('show'), usuario %></li>
+            <li><%= link_to t('edit'), edit_usuario_path(usuario) %></li>
+            <li><%= link_to t('delete'), usuario, method: :delete, data: { confirm: t('are_sure_delete') } %></li>
+
+          </ul>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!--  End  Striped -->
+<% end %>

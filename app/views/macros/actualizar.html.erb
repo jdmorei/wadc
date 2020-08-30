@@ -1,0 +1,136 @@
+<% if logged_in? %>
+
+  <style>
+    @font-face {
+      font-family: "FontAwesome";
+      font-weight: normal;
+      font-style : normal;
+      src : url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot");
+      src : url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot") format("embedded-opentype"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2") format("woff2"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff") format("woff"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf") format("truetype"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg") format("svg");
+    }
+    select {
+      font-family: FontAwesome;
+    }
+
+  </style>
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <% puts @macro %>
+                  <h1><%=t('macro_edit')%> <%= @macro.nombre %></h1>
+                </div>
+                <div class="panel-body">
+                  <div name="editarMacro ">
+
+                    <%= form_for(macros_actualizar_path) do |f| %>
+
+                        <div class="form-group">
+                          <%= f.label t('name') %><br>
+                          <%= f.text_field :nombre, :value => @macro.nombre, class: "form-control" %>
+
+                        </div>
+                      <div class="form-group">
+                        <%= f.label t('version') %><br>
+                        <%= f.text_field :version, :value => @macro.version, class: "form-control" %>
+                      </div>
+                      <% if @macro.via %>
+
+                      <div class="form-group">
+                        <%= f.label t('via') %><br>
+                        <%= f.select(:via,  options_for_select([['CONSOLE', 'console'], ['TELNET', 'telnet'], ['SSH', 'ssh']], @macro.via) )%>
+                        <div class="form-group">
+                          <%= f.label t('icon') %><br>
+                          <select name="/macros/actualizar[icon]" value="<%= @macro.icono %>" id="_macros_actualizar_icon"></select>
+                        </div>
+
+                      </div>
+                        <% end %>
+                        <div class="form-group">
+                          <%= f.label t('manufacturer') %><br>
+                          <%= f.text_field :fabricante, :value => @macro.fabricante, class: "form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label t('serie') %><br>
+                          <%= f.text_field :serie, :value => @macro.serie, class: "form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.label t('model') %><br>
+                          <%= f.text_field :modelo, :value => @macro.modelo, class: "form-control" %>
+                        </div>
+                      <div class="form-group">
+                        <%= f.label t('os_version') %><br>
+                        <%= f.text_field :osversion, :value => @macro.osversion,  class: "form-control" %>
+                      </div>
+                        <div class="form-group">
+                          <%= f.hidden_field :num_inputs, :value => @macro.inputs.length , class: "form-control" %>
+                        </div>
+
+
+                        <div class="field">
+                          <%= f.hidden_field :num_commands, :value => @macro.commands.length %>
+                        </div>
+
+
+                        <button class="btn btn-primary" type="button" id="moreCommands"><i class="fa fa-plus-circle" aria-hidden="true"><%= t('command_list')%></i></button>
+
+                        <div id="commands_list">
+                          <% @macro.commands.each_with_index do |item, index| %>
+                              <div class="form-group">
+                                <%= f.label :"command#{index}" %><br>
+                                <% valor = "command#{index}" %>
+                                <%= f.text_field valor.to_sym, :value => item, class: "col-xs-10" %>
+                                <button type="button" class='remove_field' ><i class='fa fa-minus-circle' aria-hidden='true'></i> </button>
+                                <button type="button" id='c_move_up<%=index%>' class='c_move_up' > <i class="fa fa-arrow-circle-up" aria-hidden="true"></i></button>
+                                <button type="button" id='c_move_down<%=index%>' class='c_move_down' > <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>
+
+                              </div>
+                          <% end %>
+                        </div>
+
+
+                      <% if @macro.via== nil %>
+                        <button class="btn btn-primary" type="button" id="moreInputs"><i class="fa fa-plus-circle" aria-hidden="true"> <%= t('parameters')%></i></button>
+
+                        <div id="inputs_list">
+                          <% @macro.inputs.each_with_index do |item, index| %>
+                              <div class="form-group" >
+                                <%= f.label :"input#{index}" %><br>
+                                <% valor = "input#{index}" %>
+                                <%= f.text_field valor.to_sym, :value => item , class: "col-xs-10"%>
+                                <button type="button" class='remove_field' > <i class='fa fa-minus-circle ' aria-hidden='true'></i>  </button>
+                                <button type="button" id='i_move_up<%=index%>' class='i_move_up' > <i class="fa fa-arrow-circle-up" aria-hidden="true"></i></button>
+                                <button type="button" id='i_move_down<%=index%>' class='i_move_down' > <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>
+                              </div>
+                          <% end %>
+                        </div>
+
+                        <% end %>
+
+                        </br></br>
+                        <div class="actions">
+                          <%= f.submit t('macro_update'), class: "btn btn-danger btn-lg" %>
+                        </div>
+                    <% end %>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    <!--  End  Striped -->
+<% end %>
+
+
+
+
+<script src="/assets/js/macros.js"></script>

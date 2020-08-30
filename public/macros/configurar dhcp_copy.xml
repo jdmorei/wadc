@@ -1,0 +1,16 @@
+<Macro>
+  <name>configurar dhcp_copy</name>
+  <version/>
+  <via>telnet</via>
+  <icon>fa-search</icon>
+  <device>
+    <manufacturer>cisco</manufacturer>
+    <serie>a</serie>
+    <model>a</model>
+    <osversion>a</osversion>
+  </device>
+  <inputs>
+  </inputs>
+  <commands>
+  </commands>
+</Macro>

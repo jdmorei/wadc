@@ -1,0 +1,20 @@
+<Macro>
+  <name>RPI</name>
+  <device>
+    <manufacturer>Raspberry Pi</manufacturer>
+    <serie>2</serie>
+    <model>B</model>
+  </device>
+  <inputs>
+    <input>&lt;dir&gt;</input>
+    <input>&lt;file&gt;</input>
+    <input>&lt;text&gt;</input>
+  </inputs>
+  <commands>
+    <command>cd Desktop</command>
+    <command>mkdir &lt;dir&gt;</command>
+    <command>cd &lt;dir&gt;</command>
+    <command>touch &lt;file&gt;</command>
+    <command>echo  "&lt;text&gt;" &gt;&gt; &lt;file&gt;</command>
+  </commands>
+</Macro>

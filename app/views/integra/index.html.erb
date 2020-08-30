@@ -1,0 +1,113 @@
+<% if logged_in? %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Third Party Software</h2>
+        <h5>You can integrate other software that use a web interface here </h5>
+      </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr/>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1>New web interface</h1>
+                </div>
+                <div class="panel-body">
+
+
+                  <%= form_for integra_create_path, :url => {:action => "create"} do |f| %>
+
+                      <div class="form-group">
+                        <%= f.label :name %>
+                        <%= f.text_field :nombre, class: "form-control" %>
+
+                        <%= f.label :address %>
+                        <%= f.text_field :direccion, class: "form-control" %>
+                        </br>
+                        <%= f.submit "Add", class: "btn btn-danger btn-lg" %>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+    </div>
+    <!--  End  Striped -->
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <!--    Striped Rows Table  -->
+                <div class="panel-heading">
+                  <h3>Click to open web interface in a new tab</h3>
+                </div>
+                <div class="panel-body">
+                  <div  id="dtabla"  class="table-responsive">
+
+                    <table class="table table-striped">
+
+                      <thead>
+
+                        <tr>
+                          <th>Name</th>
+                          <th>Address</th>
+                          <th></th>
+
+                        </tr>
+
+                      </thead>
+
+                      <% $integra_global.each do |key, inte| %>
+                          <tr>
+                            <td><%= inte.nombre %></td>
+                            <td><%= inte.direccion %></td>
+                            <td class="dropdown">
+
+                              <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Actions
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><%= link_to "Open", integra_show_path( {:nom => inte.nombre ,:dir => inte.direccion}), :method => :post%></li>
+                                <li><%= link_to "Delete", integra_delete_path(:i => inte.nombre), data: {confirm: "Are you sure to delete?"} %></li>
+
+                              </ul>
+
+                            </td>
+                          </tr>
+                      <% end %>
+                    </table>
+
+                    <br>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+      </div>
+    </div>
+
+    <!--  End  Striped -->
+
+<% end %>

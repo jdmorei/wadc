@@ -1,0 +1,80 @@
+<% if logged_in? %>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1> <%= @macro.nombre %></h1>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="textGoMacro">
+                      <span class="red"><%= t('fill_field_macro') %></span>
+                    </div>
+                    <div class="buttonGoMacro">
+                      <button id="showCommands" class="btn btn-info"><%= t('remember_commands') %></button>
+                    </div>
+                  </div>
+                    <div id="commands" class="alert alert-info" style="display: none;">
+                    <% i=0 %>
+                    <% @macro.commands.each do |commands| %>
+                      <% i+=1 %>
+                      <p><%= t('command') %> <%= i %> : <%= commands %></p>
+
+                    <% end %>
+
+                  </div>
+                 <br>
+                  <%= form_for dispositivos_runMacro_path, :url => {:action => "runMacro"} do |f| %>
+
+                      <%= f.hidden_field :d, :value => @dispositivo.id %>
+                      <%= f.hidden_field :macro, :value => @macro.nombre %>
+
+                      <% @macro.inputs.each do |input| %>
+                          <div class="form-group">
+                            <%= f.label input.to_sym %>:
+                            <%= f.text_field input.to_sym, class: "form-control" %></br>
+                          </div>
+
+                      <% end %>
+                      <%= f.label t('via') %>:
+                      <%= f.select(:send_by, options_for_select([
+                                                                    [t('ssh'),],
+                                                                    [t('telnet')],
+                                                                #  [t('console')]
+                                                                ], 3)) %>
+
+                      </br></br>
+                      <%= f.submit t('run'), class: "btn btn-danger btn-lg" %>
+
+                  <% end %>
+                  <br/><br/>
+
+
+                </div>
+              </div>
+
+
+        </div>
+    </div>
+
+    <hr/>
+    </div>
+    <!--  End  Striped -->
+<% end %>
+
+
+<script>
+  $(document).ready(function () {
+
+    $("#showCommands").click(function () {
+      $("#commands").toggle();
+
+
+    });
+
+  });
+
+</script>

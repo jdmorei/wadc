@@ -1,0 +1,65 @@
+<% if logged_in? %>
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1><%= t('macro_list')%></h1>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+
+                    <table  id="dtabla"  class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th><%= t('name')%></th>
+                          <th><%= t('manufacturer')%></th>
+                          <th><%= t('serie')%></th>
+                          <th><%= t('model')%></th>
+                          <th></th>
+                        </tr>
+
+                      </thead>
+                      <% $macros_global.each do |key, macro| %>
+                          <tr>
+                            <td><%= macro.nombre %></td>
+                            <td><%= macro.fabricante %></td>
+                            <td><%= macro.serie %></td>
+                            <td><%= macro.modelo %></td>
+                            <td class="dropdown">
+
+                              <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <%= t('actions')%>
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><%= link_to t('edit'), macros_actualizar_path(:m => macro.nombre) %></li>
+                                <li><%= link_to t('clone'), macros_clonar_path(:m => macro.nombre) %></li>
+                                <li><%= link_to t('export'), macros_exportar_path(:m => macro.nombre) %></li>
+                                <li><%= link_to t('delete'), macros_eliminar_path(:m => macro.nombre), data: {confirm: t('are_sure_delete')} %></li>
+
+                              </ul>
+
+                            </td>
+                          </tr>
+                      <% end %>
+                    </table>
+
+                    <br>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <!--  End  Striped -->
+<% end %>
+
+
+
+
+
+
+

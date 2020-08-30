@@ -1,0 +1,22 @@
+<% if logged_in? %>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1><%= t('new_device') %></h1>
+                </div>
+                <div class="panel-body">
+
+                <%= render 'form' %>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+    <!--  End  Striped -->
+<% end %>

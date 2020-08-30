@@ -1,0 +1,91 @@
+<% if request.original_url.scan(login_path)[0]==nil %>
+    <div class="row">
+      <div class="col-md-12">
+        <h2> Telnet </h2>
+        <h5>Sesión iniciada con <%= @d.nombre %> </h5>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+
+                <!DOCTYPE html>
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                <head>
+                  <link href="/css/vtortola.ng-terminal.css" rel="stylesheet"/>
+                  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
+                  <link href="/css/example.css" rel="stylesheet"/>
+                  <meta charset="utf-8"/>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <title>WADC</title>
+                  <!-- BOOTSTRAP STYLES-->
+                  <link href="/assets/css/bootstrap.css" rel="stylesheet"/>
+                  <!-- FONTAWESOME STYLES-->
+                  <link href="/assets/css/font-awesome.css" rel="stylesheet"/>
+                  <!-- MORRIS CHART STYLES-->
+                  <link href="/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+                  <!-- CUSTOM STYLES-->
+                  <link href="/assets/css/custom.css" rel="stylesheet"/>
+                  <!-- GOOGLE FONTS-->
+                  <link href='/css/fuente.css' rel='stylesheet' type='text/css'/>
+                  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+                  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+                  <%= csrf_meta_tags %>
+
+                  <title>
+                    Terminal
+                  </title>
+                </head>
+
+                <body ng-app="ng-terminal-example">
+
+
+                <div ng-controller="console">
+                  <terminal terminal-class="modern-terminal">
+
+                  </terminal>
+                  <%= @salida %>
+                </div>
+
+
+                <script src="/js/angular.js"></script>
+                <script src="/js/vtortola.ng-terminal.js"></script>
+                <script src="/js/example.command.tools.js"></script>
+                <script src="/js/example.js"></script>
+                <script src="/js/example.command.implementations.js"></script>
+                <script src="/js/example.command.filesystem.js"></script>
+                <!--<script src="/js/angular.js"></script>-->
+
+                <!-- JQUERY SCRIPTS -->
+                <script src="/assets/js/jquery-1.10.2.js"></script>
+                <!-- BOOTSTRAP SCRIPTS -->
+                <script src="/assets/js/bootstrap.min.js"></script>
+                <!-- METISMENU SCRIPTS -->
+                <script src="/assets/js/jquery.metisMenu.js"></script>
+                <!-- MORRIS CHART SCRIPTS -->
+                <script src="/assets/js/morris/raphael-2.1.0.min.js"></script>
+                <script src="/assets/js/morris/morris.js"></script>
+                <!-- CUSTOM SCRIPTS -->
+                <script src="/assets/js/custom.js"></script>
+
+
+                </body>
+
+                </html>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+    </div>
+<% end %>

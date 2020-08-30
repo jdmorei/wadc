@@ -1,0 +1,96 @@
+<% if logged_in? %>
+
+  <style>
+    @font-face {
+      font-family: "FontAwesome";
+      font-weight: normal;
+      font-style : normal;
+      src : url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot");
+      src : url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot") format("embedded-opentype"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2") format("woff2"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff") format("woff"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf") format("truetype"),
+      url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg") format("svg");
+    }
+    select {
+      font-family: FontAwesome;
+    }
+
+  </style>
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h2><%= t('shortcut_new')%></h2>
+                </div>
+                <div class="panel-body">
+
+                  <div name="creaMacro">
+
+                    <%= form_for macros_crear_path, url:macros_crear_path do |f| %>
+
+                      <div class="form-group">
+                        <%= f.label t('name')%><br>
+                        <%= f.text_field :nombre, class: "form-control" , :required => true %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('version') %><br>
+                        <%= f.text_field :version,  class: "form-control", :required => true   %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('via') %><br>
+                        <%= f.select(:via, options_for_select([ ['CONSOLE', 'console'], ['TELNET', 'telnet'], ['SSH', 'ssh']], 'ssh') )%>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('icon') %><br>
+                        <select name="/macros/crear[icon]" id="_macros_crear_icon"></select>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('manufacturer') %><br>
+                        <%= f.text_field :fabricante,  class: "form-control" , :required => true  %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('serie') %><br>
+                        <%= f.text_field :serie,  class: "form-control" , :required => true  %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('model') %><br>
+                        <%= f.text_field :modelo,  class: "form-control" , :required => true  %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.label t('os_version') %><br>
+                        <%= f.text_field :osversion,  class: "form-control" , :required => true  %>
+                      </div>
+                      <div class="field">
+                        <%= f.hidden_field :num_commands, value: 0 %>
+                      </div>
+                      <button class="btn btn-primary" type="button" id="moreCommands"><i class="fa fa-plus-circle" aria-hidden="true"><%= t('command_list')%></i></button>
+                      <div id="commands_list">
+
+                      </div>
+                      <div class="form-group">
+                        <%= f.hidden_field :num_inputs, value: 0 %>
+                      </div>
+
+
+                        </br></br>
+                        <div class="actions">
+                          <%= f.submit t('macro_create'), class: "btn btn-lg btn-danger" %>
+                        </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+
+      </div>
+    </div>
+
+  <script src="/assets/js/macros.js"></script>
+
+  <!--  End  Striped -->
+<% end %>
+

@@ -1,0 +1,33 @@
+<%= form_for(@usuario) do |f| %>
+  <% if @usuario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@usuario.errors.count, "error") %> <%= t('error_save_userve')%></h2>
+
+      <ul>
+      <% @usuario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+      <%= f.label t('name') %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+  <div class="form-group">
+    <%= f.label t('password') %><br>
+    <%= f.text_field :password, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('rol') %><br>
+    <%= f.text_field :rol, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label t('superuser') %><br>
+    <%= f.number_field :superusuario, class: "form-control"%>
+  </div>
+  <div class="actions">
+    <%= f.submit t('save'), class: "btn btn-danger btn-lg" %>
+  </div>
+<% end %>

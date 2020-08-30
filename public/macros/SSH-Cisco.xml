@@ -1,0 +1,29 @@
+<Macro>
+  <name>SSH-Cisco</name>
+  <device>
+    <manufacturer>Cisco</manufacturer>
+    <serie>-</serie>
+    <model>-</model>
+  </device>
+  <inputs>
+    <input>&lt;dominio&gt;</input>
+    <input>&lt;time&gt;</input>
+    <input>&lt;int&gt;</input>
+    <input>&lt;nombre&gt;</input>
+    <input>&lt;pass&gt;</input>
+    <input>&lt;num1&gt;</input>
+    <input>&lt;num2&gt;</input>
+  </inputs>
+  <commands>
+    <command>configure terminal</command>
+    <command>ip domain-name &lt;dominio&gt;</command>
+    <command>cryto key generate rsa 1024</command>
+    <command>ip ssh time-out &lt;time&gt;</command>
+    <command>ip ssh authentication-retries &lt;int&gt;</command>
+    <command>ip ssh version 2</command>
+    <command>username &lt;nombre&gt; privilege 15 secret &lt;pass&gt;</command>
+    <command>line vty &lt;num1&gt; &lt;num2&gt;</command>
+    <command>transport input ssh</command>
+    <command>login local</command>
+  </commands>
+</Macro>

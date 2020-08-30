@@ -1,0 +1,75 @@
+<% if logged_in? %>
+  <script src="/assets/js/sweetalert2.all.min.js"></script>
+
+  <script type="text/javascript">
+      var actions_text = "<%= t('actions') %>";
+      var details_text = "<%= t('details') %>";
+      var download_text = "<%=t('download') %>";
+      var cancel_text = "<%=t('msg_cancel') %>";
+      var write_macro_new = "<%=t('write_macro_new') %>";
+      var can_not_empty = "<%=t('can_not_empty') %>";
+      var bad_characters = "<%=t('bad_characters') %>";
+      var name_not_free = "<%=t('name_not_free') %>";
+
+
+
+  </script>
+  <input id="repo_address" type="hidden" value="<%= Rails.configuration.repo_address %>">
+  <div class="row">
+    <div class="col-md-12">
+      <!--    Striped Rows Table  -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><%= t('macro_import')%></h2>
+        </div>
+        <div class="panel-body">
+          <div id="upload_file">
+            <%= form_for macros_importar_path, :url => {:action => "importar"}, html: {multipart: true} do |f| %>
+              <%= f.file_field :importar %></br>
+              <%= f.submit t('import_button'), class: "btn btn-danger " %>
+            <% end %>
+          </div>
+
+        </div>
+        <div style="padding:10px" class="alert-danger">
+        <% flash.each do |type, msg| %>
+          <div >
+            <%= msg %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><%= t('macro_repo_import')%></h2>
+        </div>
+        <div class="panel-body">
+          <table id="repo" class="display" style="width:100%">
+          <thead>
+          <tr>
+            <th><%= t('name')%></th>
+            <th><%= t('by')%></th>
+            <th><%= t('manufacturer')%></th>
+            <th><%= t('os_version')%></th>
+            <th><%= t('score')%></th>
+            <th><%= t('downloads_number')%></th>
+            <th><%= t('date')%></th>
+            <th><%= t('actions')%></th>
+          </tr>
+          </thead>
+
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="/assets/js/macros.js"></script>
+
+  <!--  End  Striped -->
+<% end %>
+

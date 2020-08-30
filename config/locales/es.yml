@@ -1,0 +1,180 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+
+es:
+  #misc
+  actions: 'Acciones'
+  show: 'Ver'
+  edit: 'Editar'
+  delete: 'Eliminar'
+  date: 'Fecha'
+  description: 'Descripción'
+  save: 'Guardar'
+  back: 'Atrás'
+  inputs: 'Parámetros'
+  outputs: 'Comandos de salida'
+  execute: 'Ejecutar'
+  command: 'Comando'
+  run: 'Lanzar'
+  via: 'Vía'
+  download: 'Descargar'
+  configure: 'Configurar'
+  are_sure_delete: '¿Estás seguro de eliminar?'
+  icon: 'Icono'
+  clone: 'Clonar'
+  export: 'Exportar'
+  select_file: 'Selecciona el fichero de Macro'
+  configuration: 'Configuración'
+
+  #nav
+  devices: 'Dispositivos'
+  show_list: '<i>Listado</i>'
+  create_new: '<i>Crear nuevo</i>'
+  macros: 'MACROS'
+  import: '<i>Importar</i>'
+  new_shortcut: '<i>Nueva rápida</i>'
+  new_macro: '<i>Nueva estándar</i>'
+  system: 'Sistema'
+  logs: '<i>Logs</i>'
+  console_port: '<i>Puerto consola</i>'
+  net_int: '<i>Interfaces de red</i>'
+  shutdown: '<i>Apagar</i>'
+  users: 'Usuarios'
+  help: '<i class="fa fa-life-ring  fa-2x  "></i>Ayuda'
+  logout: 'Cerrar'
+
+
+  #devices
+  device_list: 'Lista de dispositivos'
+  type: 'Tipo'
+  manufacturer: 'SO'
+  serie: 'Serie'
+  model: 'Modelo'
+  name: 'Nombre'
+  ip: 'IP'
+  run_macro: 'lanzar MACRO'
+  ssh: 'SSH'
+  telnet: 'Telnet'
+  console: 'Consola'
+  super_user_pass: 'Contraseña de superusuario'
+  telnet_user_pass: 'Contraseña para telnet'
+  ssh_user_pass: 'Contraseña para SSH'
+  error_save_device: 'Error al guardar el dispositivo:'
+  edit_device: 'Editar dispositivo'
+  details_device: 'Detalles del dispositivo '
+  macros_availables: 'MACROS disponibles'
+  no_functions: 'Debes añadir alguna MACRO antes'
+  number_functions1: 'Hay '
+  number_functions2: ' funciones para usar en '
+  fill_field_macro: 'Completa y clic en "Lanzar" para aplicar cambios'
+  remember_commands: '¿Necesitas recordar los comandos?'
+  session_with: 'Sesión abierta con '
+  new_device: 'Nuevo dispositivo'
+  device: 'Dispositivo'
+  sending_commands: 'Enviando comandos a través de'
+
+
+  #help
+  number: 'Número'
+  text_sleep: 'en los procedimientos a través de la consola,
+                               no es posible conocer cuándo ha terminado de ejecutarse completamente algunos comandos
+                               para lanzar el siguiente. Un ejemplo de este caso puede ser en la recuperación de la contraseña
+                               enable en un switch CISCO, cuando se lanza el comando “boot” en el procedimiento de recuperación es
+                               necesario esperar un tiempo determinado a que el dispositivo arranque de nuevo.'
+  text_cr: 'como en el caso anterior, en ciertas ocasiones la CLI del dispositivo
+                            espera que un usuario interactúe con ella lanzando un salto de línea para confirmar algún cambio,
+                            con esta función se lanza el carácter ‘\n’ al dispositivo.'
+  text_random: ' concatena un número aleatorio, que vendrá dado entre el valor 0 y el valor introducido por parámetro.'
+  text_break: 'también usado para funciones específicas de recuperación a través de la consola, en este caso, lanzará el carácter ‘X02’
+  también conocido como “carácter break” usado por ejemplo en la recuperación de la contraseña en routers del fabricante CISCO.'
+  text_enable: 'reemplaza por la contraseña enable.'
+  text_telnet: 'reemplaza por la contraseña telnet.'
+  text_ssh: 'reemplaza por la contraseña ssh.'
+  ssh_port: 'Puerto SSH'
+  telnet_port: 'Puerto Telnet'
+
+  #logs
+  log_files: ' Ficheros de logs'
+  file: 'Fichero'
+  sizekb: 'Tamaño(Kb)'
+  read: 'Leer'
+  file_show: 'Mostrando fichero: '
+
+
+  #interfaces
+  error_save_config: 'Error al guardar la configuración:'
+  address: 'Dirección'
+  mask: 'Máscara'
+  gateway: 'Puerta de enlace'
+  dns: 'DNS'
+  edit_config: 'Editar Configuración de Red'
+  new_config: 'Nueva Configuración de Red'
+  interface_list: 'Lista de Interfaces'
+  interface: 'Interfaz'
+  configuration_list: 'Lista de Configuraciones'
+  details_config: 'Detalles de configuración de '
+
+  #macro
+  macro_list: 'Lista de Macros'
+  macro_edit: 'Editar Macro'
+  version: 'Versión'
+  os_version: 'Versión del S.O.'
+  command_list: 'Lista de comandos'
+  parameters: 'Parámetros'
+  macro_update: 'Actualizar Macro'
+  macro_new: 'Nueva Macro'
+  shortcut_new: 'Nueva Macro rápida'
+  macro_import: 'Importar Macro'
+  macro_repo_import: 'Importar macro desde Repo'
+  import_button: 'Importar'
+  preset_macro: 'MACROS PRECONFIGURADAS'
+  macro_create: 'Crear Macro'
+  score: 'Puntación'
+  downloads_number: 'Descargas'
+  by: 'Por'
+  details: 'Detalles'
+  write_macro_new: 'Nombre de la Macro'
+  can_not_empty: 'El campo no puede estar vacío'
+  bad_characters: "Contiene alguno de los siguientes caracteres no permitidos: <  >  :  \"  |  ? * / . \\ "
+  name_not_free:  'El nombre seleccionado está ocupado'
+
+  #users
+  error_save_user: 'Error al guardar el usuario: '
+  password: 'Contraseña'
+  rol: 'Rol'
+  superuser: 'Superusuario'
+  user_list: 'Lista de usuarios'
+  detail_of: 'Detalles de'
+  user_edit: 'Editar usuario'
+  user_new: 'Nuevo usuario'
+
+  #quickaccess
+  msg_ok: 'Lanzar'
+  msg_cancel: 'Atrás'
+  msg_placeHolder: 'Selecciona un dispositivo'
+  msg_error: 'Debes seleccionar un dispositivo'
+  msg_generic_error_run: 'Se ha producido un error'
+  msg_generic_sub_error_run: 'Vaya...'
+  msg_success_run: 'Se ha ejecutado satisfactoriamente'
+  msg_generic_sub_success_run: 'Enhorabuena'
+  msg_generic_footer: 'Para más información ver log TODO link'
+  quick_run: 'Acceso a Macros rápidas'

@@ -1,0 +1,22 @@
+<Macro>
+  <name>RestaurarRomon-Cisco</name>
+  <device>
+    <manufacturer>Cisco</manufacturer>
+    <serie>-</serie>
+    <model>-</model>
+  </device>
+  <inputs>
+    <input>Es necesario poner en la interfaz de red la IP  192.168.1.15</input>
+    <input>&lt;ios&gt;</input>
+  </inputs>
+  <commands>
+    <command>set</command>
+    <command>IP_ADDRESS = 192.168.1.2</command>
+    <command>IP_SUBNET_MASK = 255.255.255.0</command>
+    <command>DEFAULT_GATEWAY = 192.168.1.1</command>
+    <command>TFTP_SERVER = 192.168.1.15</command>
+    <command>TFTP_FILE = &lt;ios&gt;</command>
+    <command>tftpdnld</command>
+    <command>y</command>
+  </commands>
+</Macro>

@@ -1,0 +1,180 @@
+<% if logged_in? %>
+
+
+    <% if @dispositivo.fabricante == "Cisco" %>
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="panel panel-info">
+
+          <div class="panel-heading">Realiza Backup</div>
+          <div class="panel-body">
+
+            <%= form_for dispositivos_realizaBackup_path, :url => {:action => "realizaBackup", :method => :post, :params =>{:disp => @dispositivo}} do |f| %>
+
+                <%= f.label :Tipo %>:
+                <%= select_tag(:tipo, options_for_select([['running-config', 1], ['startup-config', 2], ['vlan', 3]], 1)) %>
+                <br/>
+                <%= f.label :'Send by' %>:
+                <%= select_tag(:via, options_for_select([['console', 1], ['telnet', 2], ['ssh', 3]], 1)) %>
+
+                <br/>
+                <br/>
+                <%= f.label :'Nombre del archivo' %>:
+                <%= f.text_field :nombre %>
+
+                <%= f.submit :value => 'Aceptar' %>
+            <% end %>
+
+          </div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+
+        <div class="panel panel-info">
+          <div class="panel-heading">Restaura Backup</div>
+          <div class="panel-body">
+            <%= form_for dispositivos_recuperaBackup_path, :url => {:action => "recuperaBackup", :method => :post, :params =>{:disp => @dispositivo}} do |f| %>
+
+                <%= f.label :Tipo %>:
+                <%= select_tag(:tipo, options_for_select([['running-config', 1], ['startup-config', 2], ['vlan', 3]], 1)) %>
+                <br/>
+                <%= f.label :'Send by' %>:
+                <%= select_tag(:via, options_for_select([['console', 1], ['telnet', 2], ['ssh', 3]], 1)) %>
+                <br/>
+                <br/>
+                <%
+                  files = Array.new
+
+                  route = "/srv/tftp"
+
+                  if Dir.exist? route
+
+                    Dir.chdir route
+
+                    Dir.foreach(Dir.pwd) do |file|
+
+                      if file!='..' and file!='.' then
+                        files.append file.to_s
+                      end
+
+                    end
+
+                  end
+
+                %>
+
+                <%= f.label :'Nombre del archivo' %>:
+                <%= select(dispositivos_recuperaBackup_path, :archivo, files.each { |p| [p] }) %>
+
+                <%= f.submit :value => 'Aceptar' %>
+            <% end %>
+          </div>
+          <div class="panel-footer"></div>
+
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-back noti-box">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <!--    Striped Rows Table  -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1><%= t('details_device') %> <%= @dispositivo.nombre %> </h1>
+                </div>
+                <div class="panel-body">
+
+                  <p>
+                    <strong class="form-control"><%= t('name') %>:  <%= @dispositivo.nombre %></strong>
+
+                  </p>
+                  <p class="form-group">
+                    <strong class="form-control"><%= t('type') %>:  <%= @dispositivo.tipo %></strong>
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('manufacturer') %>:  <%= @dispositivo.fabricante %></strong>
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('serie') %>:  <%= @dispositivo.serie %></strong>
+                  <p>
+                    <strong class="form-control"><%= t('model') %>:  <%= @dispositivo.modelo %></strong>
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('date') %>:  <%= @dispositivo.fecha %></strong>
+
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('description') %>:  <%= @dispositivo.descripcion %></strong>
+
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('ip') %>:  <%= @dispositivo.ip %></strong>
+
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('super_user_pass') %>:  <%= @dispositivo.passenable %></strong>
+
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('telnet_user_pass') %>:  <%= @dispositivo.passtelnet %></strong>
+
+                  </p>
+                  <p>
+                    <strong class="form-control"><%= t('telnet_port') %>:  <%= @dispositivo.telnetport %></strong>
+
+
+                  </p>
+
+                  <p>
+                    <strong class="form-control"><%= t('ssh_user_pass') %>:  <%= @dispositivo.passsh %></strong>
+
+
+                  </p>
+                  <p>
+                    <strong class="form-control"><%= t('ssh_port') %>:  <%= @dispositivo.sshport %></strong>
+
+
+                  </p>
+
+
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= link_to t('back'), dispositivos_path, class: "btn btn-default btn-lg", style: "text-color: white" %>
+              <%= link_to t('edit'), edit_dispositivo_path(@dispositivo), class: "btn btn-danger btn-lg" %>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+    </div>
+    <!--  End  Striped -->
+<% end %>
+
+<script>
+  $(document).on("page:charge", function () {
+    $("#devices").addClass("active-menu");
+    $("#users").removeClass("active-menu");
+    $("#macros").removeClass("active-menu");
+    $("#interfaces").removeClass("active-menu");
+    $("#integration").removeClass("active-menu");
+
+  });
+</script>

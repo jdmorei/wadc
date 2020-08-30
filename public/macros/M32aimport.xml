@@ -1,0 +1,18 @@
+<Macro>
+  <name>M32aimport</name>
+  <version>1.5</version>
+  <via>multi</via>
+  <icon/>
+  <device>
+    <manufacturer>Unix</manufacturer>
+    <serie>2.54</serie>
+    <model>Unix</model>
+    <osversion>2.54</osversion>
+  </device>
+  <inputs>
+    <input>Escritorio</input>
+    <input>hola</input>
+  </inputs>
+  <commands>
+  </commands>
+</Macro>

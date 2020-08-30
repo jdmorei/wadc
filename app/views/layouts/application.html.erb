@@ -1,0 +1,280 @@
+﻿<% if request.original_url.scan(login_path)[0]==nil %>
+
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>WADC</title>
+      <!-- BOOTSTRAP STYLES-->
+      <link href="/assets/css/bootstrap.css" rel="stylesheet"/>
+      <!-- FONTAWESOME STYLES-->
+      <link href="/assets/css/font-awesome.css" rel="stylesheet"/>
+      <!-- CUSTOM STYLES-->
+      <link href="/assets/css/custom.css" rel="stylesheet"/>
+
+      <link href='/assets/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'/>
+
+      <!-- JQUERY SCRIPTS -->
+      <script src="/assets/js/jquery-1.10.2.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+      <script src="/assets/js/bootstrap.min.js"></script>
+      <!-- METISMENU SCRIPTS -->
+      <script src="/assets/js/jquery.metisMenu.js"></script>
+
+      <!-- CUSTOM SCRIPTS -->
+      <script src="/assets/js/custom.js"></script>
+      <script src="/assets/js/jquery.dataTables.min.js"></script>
+
+      <%= csrf_meta_tags %>
+
+    </head>
+
+    <body>
+
+    <% if logged_in? %>
+        <div id="wrapper">
+          <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/dispositivos">WADC</a>
+            </div>
+            <div class="user-nav">
+                <select class="language-select" id="language-select">
+                  <% if ((I18n.locale) == :es)%>
+                    <option value="en">English</option>
+                    <option value="es" selected>Spanish</option>
+                  <% elsif ((I18n.locale) == :en) %>
+                    <option value="en" selected >English</option>
+                    <option value="es">Spanish</option>
+                  <%else%>
+                  <% end %>
+                </select>
+
+              <%= current_user.name %> &nbsp; <%= link_to t('logout'), logout_path, method: :get, class: "btn btn-danger square-btn-adjust" %></div>
+          </nav>
+
+          <!-- /. NAV TOP  -->
+          <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+              <ul class="nav" id="main-menu">
+                <li class="text-center hidden-xs">
+                  <img src="/assets/img/logo.png" class="logo-image img-responsive"/>
+                </li>
+                <li>
+
+                  <a href="#" id="devices"><i class="fa fa-sitemap fa-2x"></i><%= t('devices') %><span class="fa arrow"></span></a>
+                  <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                    <li>
+                      <%= link_to (t('show_list')).html_safe, dispositivos_path %>
+
+                    </li>
+                    <li>
+                      <%= link_to (t('create_new')).html_safe, new_dispositivo_path%>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#" id="macros"><i class="fa fa-cogs fa-2x"></i><%= t('macros') %><span class="fa arrow"></span></a>
+                  <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                    <li>
+                      <%= link_to (t('quick_run')).html_safe, macros_quick_path %>
+                    </li>
+                    <li>
+                      <%= link_to (t('show_list')).html_safe, macros_consultar_path  %>
+
+                    </li>
+                    <li>
+                      <%= link_to (t('import')).html_safe, macros_importar_path  %>
+
+                    </li>
+                    <li>
+                      <%= link_to (t('new_macro')).html_safe, macros_crear_path %>
+                    </li>
+                    <li>
+                      <%= link_to (t('new_shortcut')).html_safe, macros_createShortcut_path %>
+                    </li>
+                  </ul>
+
+                </li>
+                <li>
+                  <a href="#" id="interfaces"><i class="fa fa-plug fa-2x"></i><%= t('system') %><span class="fa arrow"></span></a>
+                  <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                    <% if current_user.rol == "1"%>
+                    <li>
+                      <%= link_to (t('logs')).html_safe, logs_showLogs_path %>
+                    </li>
+
+                    <% end %>
+                   <!-- <li>
+                      <%= link_to (t('console_port')).html_safe, console_new_path,:target => '_blank' %>
+                    </li>-->
+                    <li>
+                      <%= link_to (t('net_int')).html_safe, interfaces_path  %>
+                      <ul class="nav nav-third-level collapse" aria-expanded="false" style="height: 0px;">
+                        <li>
+                          <%= link_to (t('show_list')).html_safe, interfaces_path  %>
+
+                        </li>
+                        <li>
+                          <%= link_to (t('create_new')).html_safe, new_interface_path %>
+                        </li>
+
+                      </ul>
+
+                    </li>
+
+                   <!--" <li>
+                      <%= link_to (t('shutdown')).html_safe, logs_shutdown_path %>
+                    </li>-->
+
+                  </ul>
+                </li>
+                <% if current_user.rol == "1"%>
+                  <li>
+                    <a href="#" id="users"><i class="fa fa-users fa-2x"></i><%= t('users') %><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                      <li>
+                        <%= link_to (t('show_list')).html_safe, usuarios_path %>
+
+                      </li>
+                      <li>
+                        <%= link_to (t('create_new')).html_safe, new_usuario_path %>
+                      </li>
+                    </ul>
+
+
+                  </li>
+                <%end%>
+                <li>
+
+                  <%= link_to (t('help')).html_safe, logs_help_path,  id: "help" %>
+:
+                </li>
+                <!--<li>
+
+                  <%# link_to ('<i class="fa fa-puzzle-piece fa-2x  "></i>Integration').html_safe, integra_index_path,  id: "integration" %>
+:
+                </li>-->
+
+              </ul>
+            </div>
+
+          </nav>
+
+    <% end %>
+
+
+
+    <% flash.each do |key, value| %>
+      <!--  <p> <%= value %></p>-->
+    <% end %>
+
+    <div id="page-wrapper">
+      <div id="page-inner">
+<% end %>
+<%= yield %>
+
+
+</div>
+<!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+
+<!-- SCRIPTS -AT THE BOTTOM TO REDUCE THE LOAD TIME-->
+
+<script>
+
+
+   $(document).ready(function () {
+
+  //$(document).on("page:change",function() {
+    $( "#devices" ).click(function() {
+      $( "#devices" ).addClass( "active-menu" );
+      $( "#users").removeClass( "active-menu" );
+      $( "#macros").removeClass( "active-menu" );
+      $( "#interfaces").removeClass( "active-menu" );
+      $( "#integration").removeClass( "active-menu" );
+
+    });
+    $( "#users" ).click(function() {
+      $( "#users" ).addClass( "active-menu" );
+      $( "#devices").removeClass( "active-menu" );
+      $( "#macros").removeClass( "active-menu" );
+      $( "#interfaces").removeClass( "active-menu" );
+      $( "#integration").removeClass( "active-menu" );
+
+    });
+    $( "#macros" ).click(function() {
+      $( "#macros" ).addClass( "active-menu" );
+      $( "#devices").removeClass( "active-menu" );
+      $( "#users").removeClass( "active-menu" );
+      $( "#interfaces").removeClass( "active-menu" );
+      $( "#integration").removeClass( "active-menu" );
+
+    });
+    $( "#interfaces" ).click(function() {
+      $( "#interfaces" ).addClass( "active-menu" );
+      $( "#devices").removeClass( "active-menu" );
+      $( "#users").removeClass( "active-menu" );
+      $( "#macros").removeClass( "active-menu" );
+      $( "#integration").removeClass( "active-menu" );
+
+    });
+    $( "#integration" ).click(function() {
+      $( "#integration" ).addClass( "active-menu" );
+      $( "#devices").removeClass( "active-menu" );
+      $( "#users").removeClass( "active-menu" );
+      $( "#macros").removeClass( "active-menu" );
+      $( "#interfaces").removeClass( "active-menu" );
+
+    });
+
+    if (!$.fn.dataTable.isDataTable('#dtabla')){
+        $('#dtabla').DataTable();
+
+    }
+
+
+    $("#language-select").change((event)=>{
+
+       const lang=event.target.value ;
+
+       if(lang){
+
+           fetch('/changeLanguage/'+lang)
+               .then(res =>{
+                   debugger
+                   location.reload();
+
+                 //  res.json()
+               })
+               .catch(error =>
+                   console.error('Error:', error)
+               )
+
+       }
+
+
+    })
+
+
+   });
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
