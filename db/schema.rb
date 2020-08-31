@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200407111301) do
+ActiveRecord::Schema.define(version: 20200831155932) do
 
   create_table "dispositivos", force: :cascade do |t|
     t.string   "tipo"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20200407111301) do
     t.string   "consoleconfig"
     t.integer  "telnetport"
     t.integer  "sshport"
+    t.string   "username"
   end
 
   add_index "dispositivos", ["usuario_id"], name: "index_dispositivos_on_usuario_id"

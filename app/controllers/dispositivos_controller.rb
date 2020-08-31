@@ -171,17 +171,12 @@ class DispositivosController < ApplicationController
   def openSSH
 
     puts @_params
-    #$numeroSsh=$numeroSsh+1
+
     @d =set_dispositivo
     systemlog "open ssh session: #{@d.nombre}"
 
 
-    puts "asdfasd=> #{$numeroSsh}"
-    Thread.new do
-      `cd /tmp; shellinaboxd -p #{$numeroSsh} -s /:SSH:#{@d.ip} 2>&1`
-    end
-    @puerto = $numeroSsh
-    puts "puertoooo _=> #{@puerto}"
+    @url="?hostname=#{@d.ip}&username=#{@d.username}&password=#{Base64.encode64(@d.passsh)}"
 
 
   end
@@ -310,7 +305,7 @@ class DispositivosController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def dispositivo_params
-    params.require(:dispositivo).permit(:tipo, :fabricante, :serie, :modelo, :nombre, :fecha, :descripcion, :ip, :passenable, :passtelnet, :telnetport, :passsh, :sshport, :consoleconfig)
+    params.require(:dispositivo).permit(:tipo, :fabricante, :serie, :modelo, :nombre, :fecha, :descripcion, :ip, :passenable, :passtelnet, :telnetport, :passsh, :sshport, :consoleconfig, :username)
   end
 
 

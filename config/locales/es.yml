@@ -91,6 +91,7 @@ es:
   new_device: 'Nuevo dispositivo'
   device: 'Dispositivo'
   sending_commands: 'Enviando comandos a través de'
+  username: 'Usuario'
 
 
   #help

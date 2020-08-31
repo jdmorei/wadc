@@ -26,6 +26,6 @@ module IDRASCS
 
      config.repo_user=""
      config.repo_password=""
-     config.repo_address="http://localhost"
+     config.repo_address="https://repo.wadc.es"
   end
 end
