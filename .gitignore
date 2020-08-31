@@ -18,5 +18,7 @@
 
 .idea/workspace.xml
 
+.idea/*
+
 public/macros/.*
 
