@@ -21,7 +21,6 @@ gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703
 
 \curl -sSL https://get.rvm.io | bash -s stable --rails
 
-echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
 rvm install 2.2.4
 
 rvm use 2.2.4
