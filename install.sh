@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir certs
+
 openssl genrsa -out certs/server.key 2048
 openssl rsa -in certs/server.key -out certs/server.key
 openssl req -sha256 -new -key certs/server.key -out certs/server.csr -subj '/CN=localhost'
