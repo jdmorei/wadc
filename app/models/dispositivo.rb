@@ -1,6 +1,6 @@
 class Dispositivo < ActiveRecord::Base
   belongs_to :usuario
-  $numeroSsh=4000
+  $puertoSSH=65432
 
 
   def runMacro macro, via=nil
@@ -33,9 +33,9 @@ class Dispositivo < ActiveRecord::Base
 
 
     if viaAux.downcase=="ssh" then
-      sol =send_ssh @dispositivo.id, @dispositivo.ip, @dispositivo.nombre, @dispositivo.passsh, @dispositivo.sshport, sentenciasFinales
+      sol =send_ssh @dispositivo.id, @dispositivo.ip, @dispositivo.username, @dispositivo.passsh, @dispositivo.sshport, sentenciasFinales
     elsif viaAux.downcase == "telnet" then
-      sol = send_telnet @dispositivo.id, @dispositivo.ip, @dispositivo.nombre, @dispositivo.passtelnet,@dispositivo.telnetport, sentenciasFinales
+      sol = send_telnet @dispositivo.id, @dispositivo.ip, @dispositivo.username, @dispositivo.passtelnet,@dispositivo.telnetport, sentenciasFinales
     elsif viaAux.downcase == "console" then
       sol = send_console @dispositivo.id, @dispositivo.passenable, sentenciasFinales
     end
