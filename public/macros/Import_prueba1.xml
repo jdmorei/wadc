@@ -1,2 +1,0 @@
-
-<Macro><name>Import_prueba1</name><version>1.5</version><via></via><icon/><device><manufacturer>Unix</manufacturer><serie/><model/><osversion>2.54</osversion></device><inputs><input>Escritorio</input><input>hola</input></inputs><commands><command>cd Escritorio</command><command>touch  hola</command><command>"tuculo"&gt; hola</command></commands></Macro>

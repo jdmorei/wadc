@@ -20,12 +20,7 @@
 
 /.idea/*
 
-/public/macros/.*
 
-/public/log/.*
-
-/certs/.*
-/vendor/
-/public/macros/
-/public/log/
-/certs/
+/public/macros/*
+/public/log/*
+/certs/*
