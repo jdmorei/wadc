@@ -16,12 +16,12 @@
 !/log/.keep
 /tmp
 
-.idea/workspace.xml
+/.idea/workspace.xml
 
-.idea/*
+/.idea/*
 
-public/macros/.*
+/public/macros/.*
 
-public/log/.*
+/public/log/.*
 
-certs/.*
+/certs/.*
